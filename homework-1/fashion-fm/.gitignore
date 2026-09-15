@@ -12,6 +12,7 @@ wheels/
 # Downloaded datasets and generated training artifacts
 /data/
 /outputs/
+/logs/
 
 # Test/lint artifacts
 .pytest_cache/

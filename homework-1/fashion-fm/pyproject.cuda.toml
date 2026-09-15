@@ -17,6 +17,7 @@ dependencies = [
   "pillow>=11.0",
   "pydantic>=2.11",
   "pyyaml>=6.0",
+  "rich>=15.0.0",
   "torch>=2.10.0,<2.11",
   # Torchvision tracks the selected PyTorch release family.
   "torchvision>=0.25.0,<0.26",
