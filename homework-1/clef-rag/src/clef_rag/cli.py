@@ -23,6 +23,11 @@ def positive(value):
         raise argparse.ArgumentTypeError("must be at least 1")
     return number
 
+def positive_float(value):
+    fvalue = float(value)
+    if fvalue <= 0:
+        raise argparse.ArgumentTypeError(f"invalid positive float value: '{value}'")
+    return fvalue
 
 def parser():
     root = argparse.ArgumentParser(
@@ -89,6 +94,15 @@ def parser():
             )
             command.add_argument(
                 "--retrieval-only", action="store_true", help="Skip generated answers"
+            )
+            command.add_argument("--max_candidates", type=positive, default=20, help="Amount to retrieve")
+            command.add_argument("--top_k", type=positive, default=6, help="Top k candidate papers")
+            command.add_argument(
+                "--retriever-weights",
+                type=positive_float,
+                nargs=2,
+                default=[0.5, 0.5],
+                help="Retriever weights, [semantic, lexical]"
             )
     return root
 
@@ -192,6 +206,9 @@ def main(argv=None):
                     args.output,
                     args.retrieval_only,
                     cutoffs=args.k,
+                    top_k=args.top_k,
+                    max_candidates=args.max_candidates,
+                    retriever_weights=args.retriever_weights,
                 )
                 if not args.json:
                     print(json.dumps(result["summary"], indent=2))
