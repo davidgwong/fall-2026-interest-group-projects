@@ -1,10 +1,10 @@
 weight_pairs=(
-    "0.3 0.7"
+    "0.2 0.8"
     "0.5 0.5"
-    "0.7 0.3"
+    "0.8 0.2"
 )
 
-candidate_amounts=(10 20 30)
+candidate_amounts=(5 20 25)
 top_ks=(3 6 9)
 
 experiment_start=$(date +%s)
@@ -26,7 +26,7 @@ for amount in "${candidate_amounts[@]}"; do
                 --max_candidates "$amount" \
                 --top_k "$k" \
                 --retriever-weights "$w1" "$w2" \
-                --output "results/my_question_results/eval_d768-c${amount}_-k${k}_w${w1}-${w2}.json"
+                --output "results/my_question_results_02/02_eval_d768-c${amount}_-k${k}_w${w1}-${w2}.json"
 
             end_time=$(date +%s)
             elapsed=$(( end_time - start_time ))
@@ -38,4 +38,4 @@ done
 echo "---"
 experiment_end=$(date +%s)
 total_elapsed=$(( experiment_end - experiment_start ))
-echo "***ENDING EXPERIMENT.*** End time: $(date), total elapsed time: ${total_elapsed}s""
+echo "***ENDING EXPERIMENT.*** End time: $(date), total elapsed time: ${total_elapsed}s"

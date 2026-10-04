@@ -107,7 +107,7 @@ class Retriever:
         ids = sorted({d.metadata["document_id"] for d in documents})
         semantic = store.as_retriever(
             search_kwargs={
-                "k": min(self.max_candidates),
+                "k": min(self.max_candidates, len(documents)),
                 "filter": {"document_id": {"$in": ids}},
             }
         )
