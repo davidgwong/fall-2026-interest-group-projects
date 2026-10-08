@@ -25,7 +25,7 @@ def positive(value):
 
 def positive_float(value):
     fvalue = float(value)
-    if fvalue <= 0:
+    if fvalue < 0:
         raise argparse.ArgumentTypeError(f"invalid positive float value: '{value}'")
     return fvalue
 
